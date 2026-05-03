@@ -1,0 +1,44 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        pip install black flake8 pylint mypy
+        pip install -r requirements.txt
+    
+    - name: Check code formatting with Black
+      run: |
+        black --check nexus/ tests/ examples/
+    
+    - name: Lint with Pylint
+      run: |
+        pylint nexus/ --exit-zero --rcfile=.pylintrc || true
+    
+    - name: Security check with Bandit
+      run: |
+        pip install bandit
+        bandit -r nexus/ -f json -o bandit-report.json || true
+    
+    - name: Upload Bandit report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: bandit-security-report
+        path: bandit-report.json

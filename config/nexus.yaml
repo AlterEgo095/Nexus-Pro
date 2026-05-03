@@ -1,0 +1,122 @@
+# NEXUS Ultimate Configuration
+
+# Cognitive Engine Settings
+cognitive:
+  # Thinking system levels (1-4)
+  thinking_levels: 4
+  
+  # Reasoning mode: "tree_of_thoughts", "chain_of_thought", "auto"
+  reasoning_mode: "auto"
+  
+  # Certainty threshold (0.0-1.0)
+  certainty_threshold: 0.8
+  
+  # Enable meta-cognition
+  meta_cognition: true
+  
+  # Complexity detection
+  complexity:
+    simple_threshold: 3  # tools needed
+    complex_threshold: 5
+
+# Tool Orchestration
+tools:
+  # Maximum parallel executions
+  max_parallel: 5
+  
+  # Retry attempts on failure
+  retry_attempts: 1
+  
+  # Timeout per tool (seconds)
+  timeout: 120
+  
+  # Enable automatic fallback
+  auto_fallback: true
+  
+  # Circuit breaker settings
+  circuit_breaker:
+    max_failures: 2
+    reset_timeout: 300
+
+# Media Processing
+media:
+  # Image analysis
+  image:
+    ocr_exhaustive: true
+    multi_pass: true
+    min_confidence: 0.7
+  
+  # Document processing
+  document:
+    max_pages_crawler: 50
+    chunk_size: 10000
+  
+  # Audio transcription
+  audio:
+    model: "whisper-1"
+    timestamps: true
+    speaker_detection: true
+  
+  # Video analysis
+  video:
+    fps_sampling: 1.0
+    max_duration: 3600
+
+# Output Formatting
+output:
+  # Platform: "telegram", "web", "api"
+  platform: "telegram"
+  
+  # Telegram-specific
+  telegram:
+    max_length: 2000
+    use_emojis: true
+    smart_fragment: true
+    markdown: true
+  
+  # Response templates
+  templates:
+    enabled: true
+    custom_path: "config/templates/"
+
+# Performance & Monitoring
+performance:
+  # Enable metrics collection
+  metrics_enabled: true
+  
+  # Logging level: "DEBUG", "INFO", "WARNING", "ERROR"
+  log_level: "INFO"
+  
+  # Cache settings
+  cache:
+    enabled: true
+    ttl: 3600  # seconds
+    max_size: 1000  # entries
+  
+  # Token optimization
+  token_optimization: true
+
+# Resilience
+resilience:
+  # Auto-recovery
+  auto_recovery: true
+  
+  # Graceful degradation
+  graceful_degradation: true
+  
+  # Health checks
+  health_check_interval: 60  # seconds
+
+# API Keys (use environment variables in production)
+api_keys:
+  openai: "${OPENAI_API_KEY}"
+  anthropic: "${ANTHROPIC_API_KEY}"
+  telegram: "${TELEGRAM_BOT_TOKEN}"
+  google_maps: "${GOOGLE_MAPS_API_KEY}"
+
+# Feature Flags
+features:
+  proactive_suggestions: true
+  user_preference_learning: false  # v1.1
+  advanced_caching: false  # v1.1
+  distributed_execution: false  # v2.0

@@ -1,0 +1,26 @@
+[MASTER]
+# Python code to execute, usually for sys.path manipulation
+init-hook='import sys; sys.path.append(".")'
+
+[MESSAGES CONTROL]
+# Disable specific warnings
+disable=
+    C0111,  # missing-docstring
+    C0103,  # invalid-name
+    R0913,  # too-many-arguments
+    R0914,  # too-many-locals
+    W0212,  # protected-access
+    R0903,  # too-few-public-methods
+    R0801,  # duplicate-code
+
+[FORMAT]
+max-line-length=100
+indent-string='    '
+
+[BASIC]
+good-names=i,j,k,ex,_,id,df,ax
+
+[DESIGN]
+max-args=7
+max-attributes=10
+min-public-methods=1
