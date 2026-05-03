@@ -173,7 +173,6 @@ LEVEL 2 — ANALYSIS: Real intention, context, constraints
 LEVEL 3 — STRATEGY: Execution path, tool allocation, contingency
 LEVEL 4 — EXECUTION: Precise action, validation, formatting
 """,
-    
     "tools": """
 ### Tool Orchestration
 - Parallelize independent tasks
@@ -182,7 +181,6 @@ LEVEL 4 — EXECUTION: Precise action, validation, formatting
 - Validate between steps
 - Optimize for minimum calls
 """,
-    
     "media": """
 ### Universal Media Processing
 Images: 100% OCR, multi-pass analysis
@@ -190,7 +188,6 @@ Documents: Smart extraction (crawler vs summarize)
 Audio: Transcription with timestamps
 Video: Content extraction and analysis
 """,
-    
     "output": """
 ### Mobile-First Formatting
 - Concise (≤2000 chars)
@@ -199,37 +196,36 @@ Video: Content extraction and analysis
 - Clickable links
 - Zero verbosity
 """,
-    
     "resilience": """
 ### Resilience System
 - Circuit breakers for loops/failures
 - Automatic fallback mechanisms
 - Proactive clarification
 - Graceful degradation
-"""
+""",
 }
 
 
 def build_custom_prompt(sections: List[str] = None) -> str:
     """
     Build custom prompt from sections.
-    
+
     Args:
         sections: List of section names to include.
                  If None, includes all sections.
-    
+
     Returns:
         Complete system prompt
     """
     if sections is None:
         return NEXUS_SYSTEM_PROMPT
-    
+
     prompt_parts = ["# 🧠 NEXUS ULTIMATE — ELITE COGNITIVE AI AGENT\n"]
-    
+
     for section in sections:
         if section in PROMPT_SECTIONS:
             prompt_parts.append(PROMPT_SECTIONS[section])
-    
+
     return "\n".join(prompt_parts)
 
 
@@ -238,7 +234,7 @@ if __name__ == "__main__":
     # Full prompt
     print("=== FULL PROMPT ===")
     print(NEXUS_SYSTEM_PROMPT[:500])
-    
+
     # Custom prompt with only cognitive + tools
     print("\n=== CUSTOM PROMPT ===")
     custom = build_custom_prompt(["cognitive", "tools"])
